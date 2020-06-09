@@ -5,8 +5,11 @@ class Square:
         self.figure = None
 
     def set_figure(self, figure):
-        self.figure = figure.name
+        self.figure = figure
         self.occupated = True
+
+    def get_figure(self):
+        return self.figure
 
     def is_occupated(self):
         return self.occupated

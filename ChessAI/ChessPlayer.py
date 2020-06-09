@@ -3,3 +3,13 @@ class ChessPlayer:
         # boolean which indicates if player has white or black pieces;
         # if True then he has white pieces, black otherwise
         self.white = bool
+        self.pieces = {}
+
+    # this method is only called once
+    def set_pieces(self, pieces):
+        for piece in pieces:
+            name = piece.get_name()
+            if name in self.pieces:
+                self.pieces[name].append(piece)
+            else:
+                self.pieces[name] = [piece]

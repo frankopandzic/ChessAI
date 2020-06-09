@@ -8,6 +8,7 @@ class Board:
         self.white_pieces = []
         self.black_pieces = []
         cnt = 0
+        # making a chess board with 8x8(64) total squares
         for index in range(1,9):
             for letter in range(1,9):
                 self.board[cnt][letter-1] = Square((letter, index))
@@ -51,8 +52,15 @@ class Board:
                     self.board[cnt][letter - 1].set_figure(Pawn(False, (letter, index)))
                     self.black_pieces.append(self.board[cnt][letter - 1].get_figure())
             cnt += 1
-        print(self.white_pieces)
-        print(self.black_pieces)
+
+    # this function is called only if legal_move() returns True for the same start and destination values
+    def update_board(self, start, destination):
+        # start and destination are tuples containing position on the chessboard
+        pass
+
+    def legal_move(self, start, destination):
+        # start and destination are tuples containing position on the chessboard
+        pass
 
     def get_white_pieces(self):
         return self.white_pieces

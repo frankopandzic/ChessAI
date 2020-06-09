@@ -12,3 +12,16 @@ if __name__ == '__main__':
 
     white_player.set_pieces(white_pieces)
     black_player.set_pieces(black_pieces)
+
+    white_pieces = white_player.get_pieces()
+    for key in white_pieces:
+        for piece in white_pieces[key]:
+            print(piece.get_name())
+    print()
+    figure = board.board[1][1].get_figure()
+    white_player.remove_piece(figure)
+    white_pieces = white_player.get_pieces()
+    for key in white_pieces:
+        for piece in white_pieces[key]:
+            print(piece.get_name())
+

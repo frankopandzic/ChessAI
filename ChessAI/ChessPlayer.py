@@ -13,3 +13,10 @@ class ChessPlayer:
                 self.pieces[name].append(piece)
             else:
                 self.pieces[name] = [piece]
+
+    def get_pieces(self):
+        return self.pieces
+
+    def remove_piece(self, piece):
+        name = piece.get_name()
+        self.pieces[name].remove(piece)

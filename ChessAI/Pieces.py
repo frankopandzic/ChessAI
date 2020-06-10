@@ -25,6 +25,12 @@ class Pawn:
     def get_name(self):
         return "Pawn"
 
+    def get_color(self):
+        if self.white == False:
+            return "Black"
+        else:
+            return "White"
+
 
 class Bishop:
     def __init__(self, bool, starting_position):
@@ -38,6 +44,12 @@ class Bishop:
     def get_name(self):
         return "Bishop"
 
+    def get_color(self):
+        if self.white == False:
+            return "Black"
+        else:
+            return "White"
+
 
 class Knight:
     def __init__(self, bool, starting_position):
@@ -50,6 +62,12 @@ class Knight:
 
     def get_name(self):
         return "Knight"
+
+    def get_color(self):
+        if self.white == False:
+            return "Black"
+        else:
+            return "White"
 
 
 class Rook:
@@ -78,6 +96,12 @@ class Rook:
     def get_name(self):
         return "Rook"
 
+    def get_color(self):
+        if self.white == False:
+            return "Black"
+        else:
+            return "White"
+
 
 class Queen:
     def __init__(self, bool, starting_position):
@@ -90,6 +114,12 @@ class Queen:
 
     def get_name(self):
         return "Queen"
+
+    def get_color(self):
+        if self.white == False:
+            return "Black"
+        else:
+            return "White"
 
 
 class King:
@@ -117,3 +147,9 @@ class King:
 
     def get_name(self):
         return "King"
+
+    def get_color(self):
+        if self.white == False:
+            return "Black"
+        else:
+            return "White"

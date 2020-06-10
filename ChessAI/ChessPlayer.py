@@ -22,7 +22,7 @@ class ChessPlayer:
         self.pieces[name].remove(piece)
 
     def get_color(self):
-        if self.white == "False":
+        if self.white == False:
             return "Black"
         else:
             return "White"

@@ -60,10 +60,12 @@ class Board:
         d_letter = destination[0]-1
         d_index = destination[1]-1
 
+        # remove piece from start coordinates
         figure = self.board[s_letter][s_index].get_figure()
         self.board[s_letter][s_index].set_figure(None)
         self.board[s_letter][s_index].set_occupation(False)
 
+        # move piece to destination coordinates
         self.board[d_letter][d_index].set_figure(figure)
         if not self.board[d_letter][d_index].is_occupated():
             self.board[d_letter][d_index].set_occupation(True)
@@ -80,3 +82,46 @@ class Board:
 
     def get_board(self):
         return self.board
+
+    def print_board(self):
+        temp_board = self.board.copy()
+        temp_board.reverse()
+        for row in temp_board:
+            s_row = ""
+            for square in row:
+                if square.is_occupated():
+                    figure = square.get_figure()
+                    name = figure.get_name()
+                    if name == "Knight":
+                        if figure.get_color() == "Black":
+                            s_row += "♞  "
+                        else:
+                            s_row += "♘  "
+                    elif name == "Rook":
+                        if figure.get_color() == "Black":
+                            s_row += "♜  "
+                        else:
+                            s_row += "♖  "
+                    elif name == "Pawn":
+                        if figure.get_color() == "Black":
+                            s_row += "♟  "
+                        else:
+                            s_row += "♙  "
+                    elif name == "Queen":
+                        if figure.get_color() == "Black":
+                            s_row += "♛  "
+                        else:
+                            s_row += "♕  "
+                    elif name == "Bishop":
+                        if figure.get_color() == "Black":
+                            s_row += "♝  "
+                        else:
+                            s_row += "♗  "
+                    elif name == "King":
+                        if figure.get_color() == "Black":
+                            s_row += "♚  "
+                        else:
+                            s_row += "♔  "
+                else:
+                    s_row += "   "
+            print(s_row)

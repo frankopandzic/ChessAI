@@ -7,56 +7,66 @@ class Board:
         self.board = [[0 for j in range(8)] for i in range(8)]
         self.white_pieces = []
         self.black_pieces = []
-        cnt = 0
         # making a chess board with 8x8(64) total squares
         for index in range(1,9):
             for letter in range(1,9):
-                self.board[cnt][letter-1] = Square((letter, index))
+                self.board[index-1][letter-1] = Square((letter, index))
                 # making a board with black and white chess pieces
                 if index == 1:
                     if letter in [1, 8]:
-                        self.board[cnt][letter - 1].set_figure(Rook(True, (letter, index)))
-                        self.white_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Rook(True, (letter, index)))
+                        self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter in [2, 7]:
-                        self.board[cnt][letter - 1].set_figure(Knight(True, (letter, index)))
-                        self.white_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Knight(True, (letter, index)))
+                        self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter in [3, 6]:
-                        self.board[cnt][letter - 1].set_figure(Bishop(True, (letter, index)))
-                        self.white_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Bishop(True, (letter, index)))
+                        self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter == 4:
-                        self.board[cnt][letter - 1].set_figure(Queen(True, (letter, index)))
-                        self.white_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Queen(True, (letter, index)))
+                        self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter == 5:
-                        self.board[cnt][letter - 1].set_figure(King(True, (letter, index)))
-                        self.white_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(King(True, (letter, index)))
+                        self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                 elif index == 8:
                     if letter in [1, 8]:
-                        self.board[cnt][letter - 1].set_figure(Rook(False, (letter, index)))
-                        self.black_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Rook(False, (letter, index)))
+                        self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter in [2, 7]:
-                        self.board[cnt][letter - 1].set_figure(Knight(False, (letter, index)))
-                        self.black_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Knight(False, (letter, index)))
+                        self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter in [3, 6]:
-                        self.board[cnt][letter - 1].set_figure(Bishop(False, (letter, index)))
-                        self.black_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Bishop(False, (letter, index)))
+                        self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter == 4:
-                        self.board[cnt][letter - 1].set_figure(Queen(False, (letter, index)))
-                        self.black_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(Queen(False, (letter, index)))
+                        self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter == 5:
-                        self.board[cnt][letter - 1].set_figure(King(False, (letter, index)))
-                        self.black_pieces.append(self.board[cnt][letter - 1].get_figure())
+                        self.board[index-1][letter - 1].set_figure(King(False, (letter, index)))
+                        self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
                 elif index == 2:
-                    self.board[cnt][letter-1].set_figure(Pawn(True, (letter, index)))
-                    self.white_pieces.append(self.board[cnt][letter - 1].get_figure())
+                    self.board[index-1][letter-1].set_figure(Pawn(True, (letter, index)))
+                    self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                 elif index == 7:
-                    self.board[cnt][letter - 1].set_figure(Pawn(False, (letter, index)))
-                    self.black_pieces.append(self.board[cnt][letter - 1].get_figure())
-            cnt += 1
+                    self.board[index-1][letter - 1].set_figure(Pawn(False, (letter, index)))
+                    self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
 
+    # updates positions of chess pieces on the chessboard
     # this function is called only if legal_move() returns True for the same start and destination values
     def update_board(self, start, destination):
-        # start and destination are tuples containing position on the chessboard
-        pass
+        # start and destination are tuples containing coordinates on the chessboard
+        s_letter = start[0]-1
+        s_index = start[1]-1
+        d_letter = destination[0]-1
+        d_index = destination[1]-1
+
+        figure = self.board[s_letter][s_index].get_figure()
+        self.board[s_letter][s_index].set_figure(None)
+        self.board[s_letter][s_index].set_occupation(False)
+
+        self.board[d_letter][d_index].set_figure(figure)
+        if not self.board[d_letter][d_index].is_occupated():
+            self.board[d_letter][d_index].set_occupation(True)
 
     def legal_move(self, start, destination):
         # start and destination are tuples containing position on the chessboard

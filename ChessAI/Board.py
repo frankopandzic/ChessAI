@@ -110,48 +110,48 @@ class Board:
                     name = figure.get_name()
                     if name == "Knight":
                         if figure.get_color() == "Black":
-                            s_row += "♞  "
+                            s_row += " bk "
                         else:
-                            s_row += "♘  "
+                            s_row += " wk "
                     elif name == "Rook":
                         if figure.get_color() == "Black":
-                            s_row += "♜  "
+                            s_row += " br "
                         else:
-                            s_row += "♖  "
+                            s_row += " wr "
                     elif name == "Pawn":
                         if figure.get_color() == "Black":
-                            s_row += "♟  "
+                            s_row += " bp "
                         else:
-                            s_row += "♙  "
+                            s_row += " wp "
                     elif name == "Queen":
                         if figure.get_color() == "Black":
-                            s_row += "♛  "
+                            s_row += " bQ "
                         else:
-                            s_row += "♕  "
+                            s_row += " wQ "
                     elif name == "Bishop":
                         if figure.get_color() == "Black":
-                            s_row += "♝  "
+                            s_row += " bb "
                         else:
-                            s_row += "♗  "
+                            s_row += " wb "
                     elif name == "King":
                         if figure.get_color() == "Black":
-                            s_row += "♚  "
+                            s_row += " bK "
                         else:
-                            s_row += "♔  "
+                            s_row += " wK "
                 else:
-                    s_row += "   "
+                    s_row += " [] "
             print(s_row)
 
     # returns all possible moves a pawn can make from his position
     def possible_pawn_moves(self, own_position, color):
         possible_moves = []
-        index = own_position[0]
-        letter = own_position[1]
+        index = own_position[0]-1
+        letter = own_position[1]-1
         if color == "Black":
-            if index == 7:
+            if index == 6:
                 if not self.board[index - 2][letter].is_occupated():
                     possible_moves.append((index - 2, letter))
-            if index >= 2:
+            if index >= 1:
                 if not self.board[index - 1][letter].is_occupated():
                     possible_moves.append((index - 1, letter))
                 if self.board[index - 1][letter - 1].is_occupated() and self.board[index - 1][
@@ -170,10 +170,10 @@ class Board:
                 if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
                     possible_moves.append((index - 1, letter + 1))
         else:
-            if index == 2:
+            if index == 1:
                 if not self.board[index + 2][letter].is_occupated():
                     possible_moves.append((index + 2, letter))
-            if index <= 7:
+            if index <= 6:
                 if not self.board[index + 1][letter].is_occupated():
                     possible_moves.append((index + 1, letter))
                 if self.board[index + 1][letter + 1].is_occupated() and self.board[index + 1][
@@ -198,7 +198,7 @@ class Board:
         possible_moves = []
         index = own_position[0]
         letter = own_position[1]
-        range = [1,2,3,4,5,6,7,8]
+        interval = [1,2,3,4,5,6,7,8]
 
         # following flags represent 4 quadrants of a coordinate system which has own_position as source
         # if quadrant flag is False, Board won't check for possible moves in that quadrant
@@ -209,7 +209,7 @@ class Board:
 
         for i in range(1,8):
             if first_quadrant:
-                if index + i in range and letter + i in range:
+                if index + i in interval and letter + i in interval:
                     if self.board[index+i][letter+i].is_occupated():
                         figure = self.board[index+i][letter+i].get_figure()
                         fig_color = figure.get_color()
@@ -219,7 +219,7 @@ class Board:
                     else:
                         possible_moves.append((index+i, letter+i))
             if second_quadrant:
-                if index + i in range and letter - i in range:
+                if index + i in interval and letter - i in interval:
                     if self.board[index+i][letter-i].is_occupated():
                         figure = self.board[index+i][letter-i].get_figure()
                         fig_color = figure.get_color()
@@ -229,7 +229,7 @@ class Board:
                     else:
                         possible_moves.append((index+i, letter-i))
             if third_quadrant:
-                if index - i in range and letter + i in range:
+                if index - i in interval and letter + i in interval:
                     if self.board[index-i][letter+i].is_occupated():
                         figure = self.board[index-i][letter+i].get_figure()
                         fig_color = figure.get_color()
@@ -239,7 +239,7 @@ class Board:
                     else:
                         possible_moves.append((index-i, letter+i))
             if fourth_quadrant:
-                if index - i in range and letter - i in range:
+                if index - i in interval and letter - i in interval:
                     if self.board[index-i][letter-i].is_occupated():
                         figure = self.board[index-i][letter-i].get_figure()
                         fig_color = figure.get_color()
@@ -255,7 +255,7 @@ class Board:
         possible_moves = []
         index = own_position[0]
         letter = own_position[1]
-        range = [1, 2, 3, 4, 5, 6, 7, 8]
+        interval = [1, 2, 3, 4, 5, 6, 7, 8]
 
         # following flags represent 4 quadrants of a coordinate system which has own_position as source
         # if quadrant flag is False, Board won't check for possible moves in that quadrant
@@ -264,9 +264,9 @@ class Board:
         third_quadrant = True
         fourth_quadrant = True
 
-        for i in range(1, 8):
+        for i in range(1,8):
             if first_quadrant:
-                if index in range and letter + i in range:
+                if index in interval and letter + i in interval:
                     if self.board[index][letter + i].is_occupated():
                         figure = self.board[index][letter + i].get_figure()
                         fig_color = figure.get_color()
@@ -276,7 +276,7 @@ class Board:
                     else:
                         possible_moves.append((index, letter + i))
             if second_quadrant:
-                if index + i in range and letter in range:
+                if index + i in interval and letter in interval:
                     if self.board[index + i][letter].is_occupated():
                         figure = self.board[index + i][letter].get_figure()
                         fig_color = figure.get_color()
@@ -286,7 +286,7 @@ class Board:
                     else:
                         possible_moves.append((index + i, letter))
             if third_quadrant:
-                if index in range and letter - i in range:
+                if index in interval and letter - i in interval:
                     if self.board[index][letter - i].is_occupated():
                         figure = self.board[index][letter - i].get_figure()
                         fig_color = figure.get_color()
@@ -296,7 +296,7 @@ class Board:
                     else:
                         possible_moves.append((index, letter - i))
             if fourth_quadrant:
-                if index - i in range and letter in range:
+                if index - i in interval and letter in interval:
                     if self.board[index - i][letter].is_occupated():
                         figure = self.board[index - i][letter].get_figure()
                         fig_color = figure.get_color()

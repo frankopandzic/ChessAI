@@ -13,9 +13,14 @@ if __name__ == '__main__':
     white_player.set_pieces(white_pieces)
     black_player.set_pieces(black_pieces)
 
-    figure = board.update_board((2,2), (7,2))
+    figure = board.update_board((1,7), (3,6))
+    board.update_board((8, 2), (6, 3))
     if figure is not None:
         if figure.get_color() == "Black":
             black_player.remove_piece(figure)
         else:
             white_player.remove_piece(figure)
+    board.print_board()
+    print(board.possible_pawn_moves((2,8), "White"))
+
+

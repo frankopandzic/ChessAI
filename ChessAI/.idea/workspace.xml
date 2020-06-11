@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="410e71ef-7dbf-4ede-a950-17407f6a706a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state relative-caret-position="287">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -28,20 +28,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="381" column="29" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
+            <state relative-caret-position="292">
+              <caret line="183" column="66" lean-forward="true" selection-start-line="183" selection-start-column="66" selection-end-line="183" selection-end-column="66" />
               <folding>
                 <element signature="e#132#3342#0" />
-                <element signature="e#3564#4739#0" />
                 <element signature="e#4277#4362#0" />
                 <element signature="e#4404#4428#0" />
                 <element signature="e#4470#4494#0" />
                 <element signature="e#4529#4546#0" />
                 <element signature="e#4583#6238#0" />
-                <element signature="e#7003#10096#0" />
                 <element signature="e#10221#13217#0" />
-                <element signature="e#13375#16755#0" />
                 <element signature="e#16500#20306#0" />
+                <element signature="e#20438#20602#0" />
+                <element signature="e#20698#20862#0" />
               </folding>
             </state>
           </provider>
@@ -59,7 +58,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Square.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="47">
               <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
             </state>
           </provider>
@@ -68,8 +67,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pieces.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state>
+              <caret column="11" selection-start-column="11" selection-end-column="11" />
+              <folding>
+                <element signature="e#16#935#0" />
+                <element signature="e#956#1485#0" />
+                <element signature="e#1506#2035#0" />
+                <element signature="e#2054#2923#0" />
+                <element signature="e#2943#3471#0" />
+                <element signature="e#3490#4359#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,6 +95,9 @@
       <find>print</find>
       <find>color</find>
       <find>&quot;Fasle</find>
+      <find>print?b</find>
+      <find>bishop</find>
+      <find>update</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -222,8 +232,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26912183" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.42776203" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -236,12 +246,48 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Board.py</url>
+          <line>264</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Board.py</url>
+          <line>205</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Board.py</url>
+          <line>147</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../NOS/Digitalni potpis.py" />
     <entry file="file://$PROJECT_DIR$/Pawn.py" />
+    <entry file="file://$PROJECT_DIR$/Pieces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+          <folding>
+            <element signature="e#16#935#0" />
+            <element signature="e#956#1485#0" />
+            <element signature="e#1506#2035#0" />
+            <element signature="e#2054#2923#0" />
+            <element signature="e#2943#3471#0" />
+            <element signature="e#3490#4359#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Square.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
+        <state relative-caret-position="47">
           <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
         </state>
       </provider>
@@ -253,39 +299,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="324" selection-start-line="324" selection-end-line="324" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        <state relative-caret-position="287">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pieces.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="381" column="29" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
+        <state relative-caret-position="292">
+          <caret line="183" column="66" lean-forward="true" selection-start-line="183" selection-start-column="66" selection-end-line="183" selection-end-column="66" />
           <folding>
             <element signature="e#132#3342#0" />
-            <element signature="e#3564#4739#0" />
             <element signature="e#4277#4362#0" />
             <element signature="e#4404#4428#0" />
             <element signature="e#4470#4494#0" />
             <element signature="e#4529#4546#0" />
             <element signature="e#4583#6238#0" />
-            <element signature="e#7003#10096#0" />
             <element signature="e#10221#13217#0" />
-            <element signature="e#13375#16755#0" />
             <element signature="e#16500#20306#0" />
+            <element signature="e#20438#20602#0" />
+            <element signature="e#20698#20862#0" />
           </folding>
         </state>
       </provider>

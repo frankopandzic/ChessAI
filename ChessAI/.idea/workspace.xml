@@ -4,8 +4,6 @@
     <list default="true" id="410e71ef-7dbf-4ede-a950-17407f6a706a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pieces.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pieces.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="586">
-              <caret line="256" column="32" selection-start-line="256" selection-start-column="32" selection-end-line="256" selection-end-column="32" />
+            <state relative-caret-position="199">
+              <caret line="381" column="29" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
               <folding>
                 <element signature="e#132#3342#0" />
                 <element signature="e#3564#4739#0" />
@@ -40,8 +38,10 @@
                 <element signature="e#4470#4494#0" />
                 <element signature="e#4529#4546#0" />
                 <element signature="e#4583#6238#0" />
-                <element signature="e#7015#10096#0" />
-                <element signature="e#10737#13020#0" />
+                <element signature="e#7003#10096#0" />
+                <element signature="e#10221#13217#0" />
+                <element signature="e#13375#16755#0" />
+                <element signature="e#16500#20306#0" />
               </folding>
             </state>
           </provider>
@@ -272,8 +272,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="256" column="32" selection-start-line="256" selection-start-column="32" selection-end-line="256" selection-end-column="32" />
+        <state relative-caret-position="199">
+          <caret line="381" column="29" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
           <folding>
             <element signature="e#132#3342#0" />
             <element signature="e#3564#4739#0" />
@@ -282,8 +282,10 @@
             <element signature="e#4470#4494#0" />
             <element signature="e#4529#4546#0" />
             <element signature="e#4583#6238#0" />
-            <element signature="e#7015#10096#0" />
-            <element signature="e#10737#13020#0" />
+            <element signature="e#7003#10096#0" />
+            <element signature="e#10221#13217#0" />
+            <element signature="e#13375#16755#0" />
+            <element signature="e#16500#20306#0" />
           </folding>
         </state>
       </provider>

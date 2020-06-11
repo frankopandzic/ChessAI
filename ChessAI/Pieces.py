@@ -25,6 +25,9 @@ class Pawn:
     def get_name(self):
         return "Pawn"
 
+    def set_promotion_possible(self, bool):
+        self.promotion_possible = bool
+
     def get_color(self):
         if self.white == False:
             return "Black"

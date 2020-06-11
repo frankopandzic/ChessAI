@@ -13,3 +13,9 @@ if __name__ == '__main__':
     white_player.set_pieces(white_pieces)
     black_player.set_pieces(black_pieces)
 
+    figure = board.update_board((2,2), (7,2))
+    if figure is not None:
+        if figure.get_color() == "Black":
+            black_player.remove_piece(figure)
+        else:
+            white_player.remove_piece(figure)

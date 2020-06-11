@@ -53,6 +53,7 @@ class Board:
 
     # updates positions of chess pieces on the chessboard
     # this function is called only if legal_move() returns True for the same start and destination values
+    # returns instance of Pieces.py class that needs removing after the board update, or None if no figure needs removing
     def update_board(self, start, destination):
         # start and destination are tuples containing coordinates on the chessboard
         s_letter = start[0]-1
@@ -65,10 +66,25 @@ class Board:
         self.board[s_letter][s_index].set_figure(None)
         self.board[s_letter][s_index].set_occupation(False)
 
+        # if destination square is occupated, remove that figure from the game
+        dead = False
+        if self.board[d_letter][d_index].is_occupated():
+            dead_piece = self.board[d_letter][d_index].get_figure()
+            dead = True
+            if dead_piece.get_color() == "Black":
+                self.black_pieces.remove(dead_piece)
+            else:
+                self.white_pieces.remove(dead_piece)
+
         # move piece to destination coordinates
         self.board[d_letter][d_index].set_figure(figure)
         if not self.board[d_letter][d_index].is_occupated():
             self.board[d_letter][d_index].set_occupation(True)
+
+        if dead:
+            return dead_piece
+        else:
+            return None
 
     def legal_move(self, start, destination):
         # start and destination are tuples containing position on the chessboard
@@ -125,3 +141,119 @@ class Board:
                 else:
                     s_row += "   "
             print(s_row)
+
+    # returns all possible moves a pawn can make from his position
+    def possible_pawn_moves(self, own_position, color):
+        possible_moves = []
+        index = own_position[0]
+        letter = own_position[1]
+        if color == "Black":
+            if index == 7:
+                if not self.board[index-2][letter].is_occupated():
+                    possible_moves.append((index-2, letter))
+            if index >= 2:
+                if not self.board[index-1][letter].is_occupated():
+                    possible_moves.append((index-1, letter))
+                if self.board[index-1][letter-1].is_occupated() and self.board[index-1][
+                    letter-1].get_figure().get_color() == "White":
+                    possible_moves.append((index-1, letter-1))
+                if self.board[index-1][letter+1].is_occupated() and self.board[index-1][
+                    letter+1].get_figure().get_color() == "White":
+                    possible_moves.append((index-1, letter+1))
+            # check if en_passant is possible
+            if self.board[index][letter-1].is_occupated():
+                figure = self.board[index][letter-1].get_figure()
+                if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                    possible_moves.append((index-1, letter-1))
+            if self.board[index][letter+1].is_occupated():
+                figure = self.board[index][letter+1].get_figure()
+                if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                    possible_moves.append((index-1, letter+1))
+        else:
+            if index == 2:
+                if not self.board[index + 2][letter].is_occupated():
+                    possible_moves.append((index + 2, letter))
+            if index <= 7:
+                if not self.board[index + 1][letter].is_occupated():
+                    possible_moves.append((index + 1, letter))
+                if self.board[index + 1][letter + 1].is_occupated() and self.board[index + 1][
+                    letter + 1].get_figure().get_color() == "White":
+                    possible_moves.append((index + 1, letter + 1))
+                if self.board[index + 1][letter - 1].is_occupated() and self.board[index + 1][
+                    letter - 1].get_figure().get_color() == "White":
+                    possible_moves.append((index + 1, letter - 1))
+                # check if en_passant is possible
+                if self.board[index][letter - 1].is_occupated():
+                    figure = self.board[index][letter - 1].get_figure()
+                    if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                        possible_moves.append((index + 1, letter - 1))
+                if self.board[index][letter + 1].is_occupated():
+                    figure = self.board[index][letter + 1].get_figure()
+                    if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                        possible_moves.append((index + 1, letter + 1))
+        return possible_moves
+
+    # returns all possible moves a bishop can make from his position
+    def possible_bishop_moves(self, own_position, color):
+        possible_moves = []
+        index = own_position[0]
+        letter = own_position[1]
+        range = [1,2,3,4,5,6,7,8]
+
+        # following flags represent 4 quadrants of a coordinate system which has own_position as source
+        # if quadrant flag is False, Board won't check for possible moves in that quadrant
+        first_quadrant = True
+        second_quadrant = True
+        third_quadrant = True
+        fourth_quadrant = True
+
+        for i in range(1,8):
+            if first_quadrant:
+                if index + i in range and letter + i in range:
+                    if self.board[index+i][letter+i].is_occupated():
+                        figure = self.board[index+i][letter+i].get_figure()
+                        fig_color = figure.get_color()
+                        if (color == "Black" and fig_color == "White") or (color == "White" and fig_color == "Black"):
+                            possible_moves.append((index+i, letter+i))
+                        first_quadrant = False
+                    else:
+                        possible_moves.append((index+i, letter+i))
+            if second_quadrant:
+                if index + i in range and letter - i in range:
+                    if self.board[index+i][letter-i].is_occupated():
+                        figure = self.board[index+i][letter-i].get_figure()
+                        fig_color = figure.get_color()
+                        if (color == "Black" and fig_color == "White") or (color == "White" and fig_color == "Black"):
+                            possible_moves.append((index+i, letter-i))
+                        second_quadrant = False
+                    else:
+                        possible_moves.append((index+i, letter-i))
+            if third_quadrant:
+                if index - i in range and letter + i in range:
+                    if self.board[index-i][letter+i].is_occupated():
+                        figure = self.board[index-i][letter+i].get_figure()
+                        fig_color = figure.get_color()
+                        if (color == "Black" and fig_color == "White") or (color == "White" and fig_color == "Black"):
+                            possible_moves.append((index-i, letter+i))
+                        third_quadrant = False
+                    else:
+                        possible_moves.append((index-i, letter+i))
+            if fourth_quadrant:
+                if index - i in range and letter - i in range:
+                    if self.board[index-i][letter-i].is_occupated():
+                        figure = self.board[index-i][letter-i].get_figure()
+                        fig_color = figure.get_color()
+                        if (color == "Black" and fig_color == "White") or (color == "White" and fig_color == "Black"):
+                            possible_moves.append((index-i, letter-i))
+                        fourth_quadrant = False
+                    else:
+                        possible_moves.append((index-i, letter-i))
+        return possible_moves
+
+    # returns all possible moves a rook can make from his position
+    def possible_rook_moves(self, own_position, color):
+        possible_moves = []
+        index = own_position[0]
+        letter = own_position[1]
+
+

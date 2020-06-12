@@ -4,6 +4,7 @@ class ChessPlayer:
         # if True then he has white pieces, black otherwise
         self.white = bool
         self.pieces = {}
+        self.evaluation = None
 
     # this method is only called once
     def set_pieces(self, pieces):

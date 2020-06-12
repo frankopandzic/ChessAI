@@ -20,7 +20,9 @@ if __name__ == '__main__':
             black_player.remove_piece(figure)
         else:
             white_player.remove_piece(figure)
+    board.update_board((3,6), (5,5))
     board.print_board()
-    print(board.possible_pawn_moves((2,8), "White"))
+    print(board.possible_knight_moves((5,5), "White"))
+
 
 

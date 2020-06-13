@@ -13,16 +13,28 @@ if __name__ == '__main__':
     white_player.set_pieces(white_pieces)
     black_player.set_pieces(black_pieces)
 
-    figure = board.update_board((1,7), (3,6))
-    board.update_board((8, 2), (6, 3))
-    if figure is not None:
-        if figure.get_color() == "Black":
-            black_player.remove_piece(figure)
-        else:
-            white_player.remove_piece(figure)
-    board.update_board((3,6), (5,5))
-    board.print_board()
-    print(board.possible_knight_moves((5,5), "White"))
+    chessboard = board.get_board()
+    num_of_possible_moves = 0
+    for i, row in enumerate(chessboard):
+        for j, square in enumerate(row):
+            if square.is_occupated():
+                figure = square.get_figure()
+                name = figure.get_name()
+                color = figure.get_color()
+                if name == "Pawn":
+                    num_of_possible_moves += len(board.possible_pawn_moves((i+1, j+1), color))
+                elif name == "Rook":
+                    num_of_possible_moves += len(board.possible_rook_moves((i + 1, j + 1), color))
+                elif name == "Bishop":
+                    num_of_possible_moves += len(board.possible_bishop_moves((i + 1, j + 1), color))
+                elif name == "Knight":
+                    num_of_possible_moves += len(board.possible_knight_moves((i + 1, j + 1), color))
+                elif name == "Queen":
+                    num_of_possible_moves += len(board.possible_queen_moves((i + 1, j + 1), color))
+                elif name == "King":
+                    num_of_possible_moves += len(board.possible_king_moves((i + 1, j + 1), color))
+    print(num_of_possible_moves)
+
 
 
 

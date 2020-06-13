@@ -158,18 +158,19 @@ class Board:
                 if letter - 1 in interval:
                     if self.board[index - 1][letter - 1].is_occupated() and self.board[index - 1][letter - 1].get_figure().get_color() == "White":
                         possible_moves.append((index - 1, letter - 1))
+                    # check if en passant is possible
+                    if self.board[index][letter - 1].is_occupated():
+                        figure = self.board[index][letter - 1].get_figure()
+                        if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                            possible_moves.append((index - 1, letter - 1))
                 if letter + 1 in interval:
                     if self.board[index - 1][letter + 1].is_occupated() and self.board[index - 1][letter + 1].get_figure().get_color() == "White":
                         possible_moves.append((index - 1, letter + 1))
-            # check if en_passant is possible
-            if self.board[index][letter - 1].is_occupated():
-                figure = self.board[index][letter - 1].get_figure()
-                if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
-                    possible_moves.append((index - 1, letter - 1))
-            if self.board[index][letter + 1].is_occupated():
-                figure = self.board[index][letter + 1].get_figure()
-                if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
-                    possible_moves.append((index - 1, letter + 1))
+                    # check if en passant is possible
+                    if self.board[index][letter + 1].is_occupated():
+                        figure = self.board[index][letter + 1].get_figure()
+                        if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                            possible_moves.append((index - 1, letter + 1))
         else:
             if index == 1:
                 if not self.board[index + 2][letter].is_occupated():

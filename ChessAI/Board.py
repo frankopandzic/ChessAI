@@ -461,17 +461,9 @@ class Board:
 
         return possible_moves
 
-    # returns int number of all possible moves for white or black player, depending on player_color value
+    # returns int number of all  possible moves for white or black player, depending on player_color value
     def get_num_of_possible_moves(self, player_color):
-        num_of_possible_moves = 0
-        for i, row in enumerate(self.board):
-            for j, square in enumerate(row):
-                if square.is_occupated():
-                    figure = square.get_figure()
-                    name = figure.get_name()
-                    color = figure.get_color()
-                    if color == player_color:
-                        num_of_possible_moves += len(self.get_possible_moves(name, (i + 1, j + 1), player_color))
+        num_of_possible_moves = len(self.get_possible_player_moves(player_color))
 
         return num_of_possible_moves
 
@@ -490,7 +482,7 @@ class Board:
         else:
             possible_moves = self.possible_king_moves(own_position, color)
 
-        return possible_moves\
+        return possible_moves
 
     # returns ALL the moves a player can make with all of his pieces still in the game
     def get_possible_player_moves(self, player_color):

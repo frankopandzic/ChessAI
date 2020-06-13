@@ -14,6 +14,7 @@ if __name__ == '__main__':
     black_player.set_pieces(black_pieces)
     board.print_board()
 
+    print(board.get_num_of_possible_moves("Black"))
 
 
 

@@ -4,6 +4,8 @@ from Pieces import Pawn, Knight, Bishop, Rook, Queen, King
 
 class Board:
     def __init__(self):
+        self.white_checked = False
+        self.black_checked = False
         self.board = [[0 for j in range(8)] for i in range(8)]
         self.white_pieces = []
         self.black_pieces = []
@@ -88,7 +90,19 @@ class Board:
 
     def legal_move(self, start, destination):
         # start and destination are tuples containing position on the chessboard
-        pass
+        s_index = start[0]-1
+        s_letter = start[1]-1
+        if self.board[s_index][s_letter].is_occupated():
+            figure = self.board[s_index][s_letter].get_figure()
+            name = figure.get_name()
+            color = figure.get_color()
+            possible_moves = self.get_possible_moves(name, start, color)
+            if destination in possible_moves and self.does_it_check(destination) is False:
+                return True
+        else:
+            raise Exception("There is no piece to move!")
+
+        return False
 
     def get_white_pieces(self):
         return self.white_pieces
@@ -141,6 +155,12 @@ class Board:
                 else:
                     s_row += " [] "
             print(s_row)
+
+    def set_white_checked(self):
+        self.white_checked = True
+
+    def set_black_checked(self):
+        self.black_checked = True
 
     # returns all possible moves a pawn can make from his position
     def possible_pawn_moves(self, own_position, color):
@@ -376,23 +396,121 @@ class Board:
         return possible_moves
 
     # returns all possible moves a king can make from his position
+    # TO DO: izbaci poteze koji ce kralja dovesti u sah
+    # TO DO: castling
     def possible_king_moves(self, own_position, color):
         possible_moves = []
         index = own_position[0]-1
         letter = own_position[1]-1
         interval = [0, 1, 2, 3, 4, 5, 6, 7]
 
+        if index + 1 in interval:
+            square = self.board[index + 1][letter]
+            if square.is_occupated():
+                if square.get_figure().get_color() != color:
+                    possible_moves.append((index + 1, letter))
+            if letter + 1 in interval:
+                square = self.board[index + 1][letter + 1]
+                if square.is_occupated():
+                    if square.get_figure().get_color() != color:
+                        possible_moves.append((index+1, letter+1))
+            if letter-1 in interval:
+                square = self.board[index + 1][letter - 1]
+                if square.is_occupated():
+                    if square.get_figure().get_color() != color:
+                        possible_moves.append((index + 1, letter - 1))
+        if index - 1 in interval:
+            square = self.board[index - 1][letter]
+            if square.is_occupated():
+                if square.get_figure().get_color() != color:
+                    possible_moves.append((index - 1, letter))
+            if letter + 1 in interval:
+                square = self.board[index - 1][letter + 1]
+                if square.is_occupated():
+                    if square.get_figure().get_color() != color:
+                        possible_moves.append((index - 1, letter + 1))
+            if letter - 1 in interval:
+                square = self.board[index - 1][letter - 1]
+                if square.is_occupated():
+                    if square.get_figure().get_color() != color:
+                        possible_moves.append((index - 1, letter - 1))
+        if letter + 1 in interval:
+            square = self.board[index][letter + 1]
+            if square.is_occupated():
+                if square.get_figure().get_color() != color:
+                    possible_moves.append((index, letter + 1))
+        if letter + 1 in interval:
+            square = self.board[index][letter - 1]
+            if square.is_occupated():
+                if square.get_figure().get_color() != color:
+                    possible_moves.append((index, letter - 1))
+
         return possible_moves
 
     # returns all possible moves a queen can make from her position
     def possible_queen_moves(self, own_position, color):
-        possible_moves = []
-        index = own_position[0]-1
-        letter = own_position[1]-1
-        interval = [0, 1, 2, 3, 4, 5, 6, 7]
+        possible_moves = set()
+        moves = self.possible_rook_moves(own_position, color)
+        moves += self.possible_bishop_moves(own_position, color)
+
+        for move in moves:
+            possible_moves.add(move)
+
+        possible_moves = list(possible_moves)
+        # possible_moves = sorted(possible_moves, key=lambda tuple: tuple[0])
 
         return possible_moves
 
+    # returns int number of all possible moves for white or black player, depending on player_color value
+    def get_num_of_possible_moves(self, player_color):
+        num_of_possible_moves = 0
+        for i, row in enumerate(self.board):
+            for j, square in enumerate(row):
+                if square.is_occupated():
+                    figure = square.get_figure()
+                    name = figure.get_name()
+                    color = figure.get_color()
+                    if color == player_color:
+                        num_of_possible_moves += len(self.get_possible_moves(name, (i + 1, j + 1), player_color))
 
+        return num_of_possible_moves
 
+    # wrapper function for possible_PIECE_moves functions
+    def get_possible_moves(self, piece, own_position, color):
+        if piece == "Pawn":
+            possible_moves = self.possible_pawn_moves(own_position, color)
+        elif piece == "Rook":
+            possible_moves = self.possible_rook_moves(own_position, color)
+        elif piece == "Knight":
+            possible_moves = self.possible_knight_moves(own_position, color)
+        elif piece == "Bishop":
+            possible_moves = self.possible_bishop_moves(own_position, color)
+        elif piece == "Queen":
+            possible_moves = self.possible_queen_moves(own_position, color)
+        else:
+            possible_moves = self.possible_king_moves(own_position, color)
 
+        return possible_moves\
+
+    # returns ALL the moves a player can make with all of his pieces still in the game
+    def get_possible_player_moves(self, player_color):
+        moves = []
+        for i, row in enumerate(self.board):
+            for j, square in enumerate(row):
+                if square.is_occupated():
+                    figure = square.get_figure()
+                    if figure.get_color() == player_color:
+                        moves += self.get_possible_moves(figure.get_name(), (i + 1, j + 1), player_color)
+        return moves
+
+    # determines if moving a piece to destination causes own king to be checked
+    def does_it_check(self, destination, player_color):
+        if player_color == "White":
+            opposition_moves = self.get_possible_player_moves("Black")
+            if destination in opposition_moves:
+                return True
+        else:
+            opposition_moves = self.get_possible_player_moves("White")
+            if destination in opposition_moves:
+                return True
+        return False

@@ -9,9 +9,11 @@ class Board:
         self.board = [[0 for j in range(8)] for i in range(8)]
         self.white_pieces = []
         self.black_pieces = []
+        self.white_king_position = ()
+        self.black_king_position = ()
         # making a chess board with 8x8(64) total squares
-        for index in range(1,9):
-            for letter in range(1,9):
+        for index in range(1, 9):
+            for letter in range(1, 9):
                 self.board[index-1][letter-1] = Square((letter, index))
                 # making a board with black and white chess pieces
                 if index == 1:
@@ -29,6 +31,7 @@ class Board:
                         self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter == 5:
                         self.board[index-1][letter - 1].set_figure(King(True, (letter, index)))
+                        self.white_king_position = (index, letter)
                         self.white_pieces.append(self.board[index-1][letter - 1].get_figure())
                 elif index == 8:
                     if letter in [1, 8]:
@@ -45,6 +48,7 @@ class Board:
                         self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
                     elif letter == 5:
                         self.board[index-1][letter - 1].set_figure(King(False, (letter, index)))
+                        self.black_king_position = (index, letter)
                         self.black_pieces.append(self.board[index-1][letter - 1].get_figure())
                 elif index == 2:
                     self.board[index-1][letter-1].set_figure(Pawn(True, (letter, index)))
@@ -83,6 +87,13 @@ class Board:
         if not self.board[d_letter][d_index].is_occupated():
             self.board[d_letter][d_index].set_occupation(True)
 
+        # track king position
+        if figure.get_name() == "King":
+            if figure.get_color() == "Black":
+                self.black_king_position = destination
+            else:
+                self.white_king_position = destination
+
         if dead:
             return dead_piece
         else:
@@ -97,7 +108,7 @@ class Board:
             name = figure.get_name()
             color = figure.get_color()
             possible_moves = self.get_possible_moves(name, start, color)
-            if destination in possible_moves and self.does_it_check(destination) is False:
+            if destination in possible_moves and self.does_it_check(start, destination, color) is False:
                 return True
         else:
             raise Exception("There is no piece to move!")
@@ -397,12 +408,24 @@ class Board:
 
     # returns all possible moves a king can make from his position
     # TO DO: izbaci poteze koji ce kralja dovesti u sah
-    # TO DO: castling
     def possible_king_moves(self, own_position, color):
         possible_moves = []
         index = own_position[0]-1
         letter = own_position[1]-1
         interval = [0, 1, 2, 3, 4, 5, 6, 7]
+
+        # check for castling
+        king = self.board[index][letter].get_figure()
+        move_num = king.get_move_counter()
+        if move_num == 0:
+            if self.board[index][letter-1].is_occupated() is False and self.board[index][letter-2].is_occupated() is False and self.board[index][letter-3].is_occupated() is False and self.board[index][letter-4].is_occupated() is True:
+                rook = self.board[index][letter-4].get_figure()
+                if rook.get_name() == "Rook" and rook.get_move_counter() == 0:
+                    possible_moves.append((index, letter-2))
+            if self.board[index][letter+1].is_occupated() is False and self.board[index][letter+2].is_occupated() is False and self.board[index][letter+3].is_occupated() is True
+                rook = self.board[index][letter+3].get_figure()
+                if rook.get_name() == "Rook" and rook.get_move_counter() == 0:
+                    possible_moves.append((index, letter+2))
 
         if index + 1 in interval:
             square = self.board[index + 1][letter]
@@ -496,13 +519,19 @@ class Board:
         return moves
 
     # determines if moving a piece to destination causes own king to be checked
-    def does_it_check(self, destination, player_color):
+    # TO DO: castling
+    def does_it_check(self, start, destination, player_color):
+        self.update_board(start, destination)
         if player_color == "White":
             opposition_moves = self.get_possible_player_moves("Black")
-            if destination in opposition_moves:
+            if self.white_king_position in opposition_moves:
+                self.update_board(destination, start)
                 return True
+            self.update_board(destination, start)
         else:
             opposition_moves = self.get_possible_player_moves("White")
-            if destination in opposition_moves:
+            if self.black_king_position in opposition_moves:
+                self.update_board(destination, start)
                 return True
+            self.update_board(destination, start)
         return False

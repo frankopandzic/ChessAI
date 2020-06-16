@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="410e71ef-7dbf-4ede-a950-17407f6a706a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+            <state relative-caret-position="274">
+              <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -24,29 +26,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="519" lean-forward="true" selection-start-line="519" selection-end-line="519" />
+            <state relative-caret-position="160">
+              <caret line="202" column="77" selection-start-line="202" selection-start-column="77" selection-end-line="202" selection-end-column="77" />
               <folding>
-                <element signature="e#3756#4923#0" />
-                <element signature="e#4979#5593#0" />
-                <element signature="e#5635#5659#0" />
-                <element signature="e#5701#5725#0" />
-                <element signature="e#5760#5777#0" />
-                <element signature="e#5814#7482#0" />
-                <element signature="e#7525#7550#0" />
-                <element signature="e#7593#7618#0" />
-                <element signature="e#7751#11221#0" />
-                <element signature="e#11358#14385#0" />
-                <element signature="e#14518#17536#0" />
-                <element signature="e#17673#21533#0" />
-                <element signature="e#22215#25380#0" />
-                <element signature="e#24131#24501#0" />
-                <element signature="e#24673#24784#0" />
-                <element signature="e#24914#25558#0" />
-                <element signature="e#25710#26087#0" />
+                <element signature="e#14989#18007#0" />
+                <element signature="e#15482#17977#0" />
+                <element signature="e#18144#22004#0" />
+                <element signature="e#22193#25420#0" />
+                <element signature="e#25555#25925#0" />
+                <element signature="e#26097#26208#0" />
+                <element signature="e#26338#26982#0" />
+                <element signature="e#27134#27511#0" />
+                <element signature="e#27718#29225#0" />
               </folding>
             </state>
           </provider>
@@ -86,8 +80,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pieces.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="89" column="20" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="20" />
+            <state relative-caret-position="132">
+              <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+              <folding>
+                <element signature="e#1040#1569#0" />
+                <element signature="e#1590#2119#0" />
+                <element signature="e#2138#3007#0" />
+                <element signature="e#3027#3555#0" />
+                <element signature="e#3574#4443#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,6 +114,7 @@
       <find>King</find>
       <find>does_it_check</find>
       <find>get_castling</find>
+      <find>get_color</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,18 +125,18 @@
       <list>
         <option value="$PROJECT_DIR$/Pawn.py" />
         <option value="$PROJECT_DIR$/Square.py" />
-        <option value="$PROJECT_DIR$/Pieces.py" />
         <option value="$PROJECT_DIR$/ChessPlayer.py" />
         <option value="$PROJECT_DIR$/Game.py" />
         <option value="$PROJECT_DIR$/Board.py" />
+        <option value="$PROJECT_DIR$/Pieces.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1954" />
-    <option name="y" value="52" />
-    <option name="width" value="856" />
-    <option name="height" value="882" />
+    <option name="x" value="482" />
+    <option name="y" value="207" />
+    <option name="width" value="1070" />
+    <option name="height" value="1103" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -239,15 +241,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15802172" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1579643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3371105" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39093485" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -261,6 +263,17 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Board.py</url>
+          <line>180</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../NOS/Digitalni potpis.py" />
     <entry file="file://$PROJECT_DIR$/Pawn.py" />
@@ -268,28 +281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="324" selection-start-line="324" selection-end-line="324" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ChessPlayer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-          <folding>
-            <element signature="e#57#261#0" />
-            <element signature="e#343#545#0" />
-            <element signature="e#742#833#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -308,35 +299,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ChessPlayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding>
+            <element signature="e#57#261#0" />
+            <element signature="e#343#545#0" />
+            <element signature="e#742#833#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Pieces.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="89" column="20" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="20" />
+        <state relative-caret-position="132">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding>
+            <element signature="e#1040#1569#0" />
+            <element signature="e#1590#2119#0" />
+            <element signature="e#2138#3007#0" />
+            <element signature="e#3027#3555#0" />
+            <element signature="e#3574#4443#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="519" lean-forward="true" selection-start-line="519" selection-end-line="519" />
+        <state relative-caret-position="160">
+          <caret line="202" column="77" selection-start-line="202" selection-start-column="77" selection-end-line="202" selection-end-column="77" />
           <folding>
-            <element signature="e#3756#4923#0" />
-            <element signature="e#4979#5593#0" />
-            <element signature="e#5635#5659#0" />
-            <element signature="e#5701#5725#0" />
-            <element signature="e#5760#5777#0" />
-            <element signature="e#5814#7482#0" />
-            <element signature="e#7525#7550#0" />
-            <element signature="e#7593#7618#0" />
-            <element signature="e#7751#11221#0" />
-            <element signature="e#11358#14385#0" />
-            <element signature="e#14518#17536#0" />
-            <element signature="e#17673#21533#0" />
-            <element signature="e#22215#25380#0" />
-            <element signature="e#24131#24501#0" />
-            <element signature="e#24673#24784#0" />
-            <element signature="e#24914#25558#0" />
-            <element signature="e#25710#26087#0" />
+            <element signature="e#14989#18007#0" />
+            <element signature="e#15482#17977#0" />
+            <element signature="e#18144#22004#0" />
+            <element signature="e#22193#25420#0" />
+            <element signature="e#25555#25925#0" />
+            <element signature="e#26097#26208#0" />
+            <element signature="e#26338#26982#0" />
+            <element signature="e#27134#27511#0" />
+            <element signature="e#27718#29225#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -12,10 +12,10 @@ if __name__ == '__main__':
 
     white_player.set_pieces(white_pieces)
     black_player.set_pieces(black_pieces)
+
+    board.update_board((7, 2), (4, 2))
+    board.update_board((2, 3), (4, 3))
     board.print_board()
-
-    print(board.get_num_of_possible_moves("Black"))
-
-
-
+    print(board.legal_move((1,5), (1,7)))
+    print(board.get_possible_moves("Pawn", (4,2), "Black"))
 

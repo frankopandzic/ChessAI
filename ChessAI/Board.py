@@ -200,7 +200,7 @@ class Board:
                     # check if en passant is possible
                     if self.board[index][letter + 1].is_occupated():
                         figure = self.board[index][letter + 1].get_figure()
-                        if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                        if figure.get_name() == "Pawn" and figure.get_color() == "White" and figure.get_en_passant() is True:
                             possible_moves.append((index - 1, letter + 1))
         else:
             if index == 1:
@@ -215,7 +215,7 @@ class Board:
                     # check if en_passant is possible
                     if self.board[index][letter + 1].is_occupated():
                         figure = self.board[index][letter + 1].get_figure()
-                        if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                        if figure.get_name() == "Pawn" and figure.get_color() == "White" and figure.get_en_passant() is True:
                             possible_moves.append((index + 1, letter + 1))
                 if letter - 1 in interval:
                     if self.board[index + 1][letter - 1].is_occupated() and self.board[index + 1][letter - 1].get_figure().get_color() == "White":
@@ -223,7 +223,7 @@ class Board:
                     # check if en_passant is possible
                     if self.board[index][letter - 1].is_occupated():
                         figure = self.board[index][letter - 1].get_figure()
-                        if figure.get_name() == "Pawn" and figure.get_color == "White" and figure.get_en_passant() is True:
+                        if figure.get_name() == "Pawn" and figure.get_color() == "White" and figure.get_en_passant() is True:
                             possible_moves.append((index + 1, letter - 1))
         return possible_moves
 
@@ -417,12 +417,12 @@ class Board:
         # check for castling
         king = self.board[index][letter].get_figure()
         move_num = king.get_move_counter()
-        if move_num == 0:
+        if move_num == 0 and king.get_castling() is True:
             if self.board[index][letter-1].is_occupated() is False and self.board[index][letter-2].is_occupated() is False and self.board[index][letter-3].is_occupated() is False and self.board[index][letter-4].is_occupated() is True:
                 rook = self.board[index][letter-4].get_figure()
                 if rook.get_name() == "Rook" and rook.get_move_counter() == 0:
                     possible_moves.append((index, letter-2))
-            if self.board[index][letter+1].is_occupated() is False and self.board[index][letter+2].is_occupated() is False and self.board[index][letter+3].is_occupated() is True
+            if self.board[index][letter+1].is_occupated() is False and self.board[index][letter+2].is_occupated() is False and self.board[index][letter+3].is_occupated() is True:
                 rook = self.board[index][letter+3].get_figure()
                 if rook.get_name() == "Rook" and rook.get_move_counter() == 0:
                     possible_moves.append((index, letter+2))
@@ -527,11 +527,28 @@ class Board:
             if self.white_king_position in opposition_moves:
                 self.update_board(destination, start)
                 return True
+            figure = self.board[start[0]-1][start[1]-1].get_figure()
+            if figure.get_name() == "King":
+                if destination[1] > start[1]+1:
+                    if (start[0], start[1]+1) in opposition_moves:
+                        return True
+                elif destination[1] < start[1]-1:
+                    if (start[0], start[1]-1) in opposition_moves:
+                        return True
             self.update_board(destination, start)
-        else:
+        elif player_color == "Black":
             opposition_moves = self.get_possible_player_moves("White")
             if self.black_king_position in opposition_moves:
                 self.update_board(destination, start)
                 return True
+            figure = self.board[start[0] - 1][start[1] - 1].get_figure()
+            if figure.get_name() == "King":
+                if destination[1] > start[1] + 1:
+                    if (start[0], start[1] + 1) in opposition_moves:
+                        return True
+                elif destination[1] < start[1] - 1:
+                    if (start[0], start[1] - 1) in opposition_moves:
+                        return True
             self.update_board(destination, start)
+
         return False

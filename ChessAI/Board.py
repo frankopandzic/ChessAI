@@ -68,9 +68,12 @@ class Board:
         d_index = destination[1]-1
 
         # remove piece from start coordinates
-        figure = self.board[s_letter][s_index].get_figure()
-        self.board[s_letter][s_index].set_figure(None)
-        self.board[s_letter][s_index].set_occupation(False)
+        square = self.board[s_letter][s_index]
+        figure = None
+        if square.is_occupated():
+            figure = square.get_figure()
+            self.board[s_letter][s_index].set_figure(None)
+            self.board[s_letter][s_index].set_occupation(False)
 
         # if destination square is occupated, remove that figure from the game
         dead = False
@@ -78,21 +81,25 @@ class Board:
             dead_piece = self.board[d_letter][d_index].get_figure()
             dead = True
             if dead_piece.get_color() == "Black":
-                self.black_pieces.remove(dead_piece)
+                if dead_piece in self.black_pieces:
+                    self.black_pieces.remove(dead_piece)
             else:
-                self.white_pieces.remove(dead_piece)
+                if dead_piece in self.white_pieces:
+                    self.white_pieces.remove(dead_piece)
 
         # move piece to destination coordinates
-        self.board[d_letter][d_index].set_figure(figure)
-        if not self.board[d_letter][d_index].is_occupated():
-            self.board[d_letter][d_index].set_occupation(True)
+        if figure:
+            self.board[d_letter][d_index].set_figure(figure)
+            if not self.board[d_letter][d_index].is_occupated():
+                self.board[d_letter][d_index].set_occupation(True)
 
         # track king position
-        if figure.get_name() == "King":
-            if figure.get_color() == "Black":
-                self.black_king_position = destination
-            else:
-                self.white_king_position = destination
+        if square.is_occupated():
+            if figure.get_name() == "King":
+                if figure.get_color() == "Black":
+                    self.black_king_position = destination
+                else:
+                    self.white_king_position = destination
 
         if dead:
             return dead_piece
@@ -519,7 +526,6 @@ class Board:
         return moves
 
     # determines if moving a piece to destination causes own king to be checked
-    # TO DO: castling
     def does_it_check(self, start, destination, player_color):
         self.update_board(start, destination)
         if player_color == "White":
@@ -527,28 +533,45 @@ class Board:
             if self.white_king_position in opposition_moves:
                 self.update_board(destination, start)
                 return True
-            figure = self.board[start[0]-1][start[1]-1].get_figure()
-            if figure.get_name() == "King":
-                if destination[1] > start[1]+1:
-                    if (start[0], start[1]+1) in opposition_moves:
-                        return True
-                elif destination[1] < start[1]-1:
-                    if (start[0], start[1]-1) in opposition_moves:
-                        return True
-            self.update_board(destination, start)
+            if self.board[start[0]-1][start[1]-1].is_occupated():
+                figure = self.board[start[0]-1][start[1]-1].get_figure()
+                if figure.get_name() == "King":
+                    if destination[1] > start[1]+1:
+                        if (start[0], start[1]+1) in opposition_moves:
+                            self.update_board(destination, start)
+                            return True
+                    elif destination[1] < start[1]-1:
+                        if (start[0], start[1]-1) in opposition_moves:
+                            self.update_board(destination, start)
+                            return True
         elif player_color == "Black":
             opposition_moves = self.get_possible_player_moves("White")
             if self.black_king_position in opposition_moves:
                 self.update_board(destination, start)
                 return True
-            figure = self.board[start[0] - 1][start[1] - 1].get_figure()
-            if figure.get_name() == "King":
-                if destination[1] > start[1] + 1:
-                    if (start[0], start[1] + 1) in opposition_moves:
-                        return True
-                elif destination[1] < start[1] - 1:
-                    if (start[0], start[1] - 1) in opposition_moves:
-                        return True
+            if self.board[start[0] - 1][start[1] - 1].is_occupated():
+                figure = self.board[start[0] - 1][start[1] - 1].get_figure()
+                if figure.get_name() == "King":
+                    if destination[1] > start[1] + 1:
+                        if (start[0], start[1] + 1) in opposition_moves:
+                            self.update_board(destination, start)
+                            return True
+                    elif destination[1] < start[1] - 1:
+                        if (start[0], start[1] - 1) in opposition_moves:
+                            self.update_board(destination, start)
+                            return True
             self.update_board(destination, start)
 
         return False
+
+    def get_opposition_position(self, color):
+        positions = []
+        for index, row in enumerate(self.board):
+            for letter, square in enumerate(self.board):
+                if self.board[index][letter].is_occupated():
+                    if self.board[index][letter].get_figure().get_color() == color:
+                        positions.append((index, letter))
+        return positions
+
+
+

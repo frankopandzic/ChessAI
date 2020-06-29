@@ -36,6 +36,12 @@ class ChessPlayer:
         else:
             return "White"
 
+    def get_opposite_color(self):
+        if self.white == False:
+            return "White"
+        else:
+            return "Black"
+
     def get_pieces_value(self):
         value = 0
         for name in self.pieces:
@@ -80,12 +86,9 @@ class ChessPlayer:
         evaluation = self.get_pieces_value()
         color = self.get_color()
 
-        # !!!!!!!!!!!!!!!!!!KRIVO, ne nabavljas poteze protivnika vec poziciju njegovih figura na ploci !!!!!
         if color == "White":
-            # TO DO: get opposition pieces positions
             opposition_position = board.get_opposition_position("Black")
         else:
-            # TO DO: get opposition pieces positions
             opposition_position = board.get_opposition_position("White")
         chessboard = board.get_board()
 
@@ -111,5 +114,13 @@ class ChessPlayer:
                             evaluation += self.evaluate_attack(chessboard[move[0]][move[1]])
 
         return Decimal(Decimal(evaluation).quantize(Decimal('.0001'), rounding=ROUND_HALF_UP))
+
+    # determines optimal move using alpha-beta pruning method
+    def make_move(self, board):
+        possible_moves = board.get_possible_player_moves(self.get_color())
+
+        for move in possible_moves:
+            pass
+
 
 

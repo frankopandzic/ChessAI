@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/ChessPlayer.py" line="79" />
+    <bookmark url="file://$PROJECT_DIR$/ChessPlayer.py" line="81" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="410e71ef-7dbf-4ede-a950-17407f6a706a" name="Default Changelist" comment="">
@@ -31,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="517" column="16" selection-start-line="517" selection-start-column="8" selection-end-line="517" selection-end-column="16" />
+            <state relative-caret-position="606">
+              <caret line="517" column="24" selection-start-line="517" selection-start-column="8" selection-end-line="517" selection-end-column="24" />
               <folding>
                 <element signature="e#132#3624#0" />
               </folding>
@@ -43,17 +43,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ChessPlayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="122" column="16" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="16" />
+            <state relative-caret-position="278">
+              <caret line="79" column="13" lean-forward="true" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
               <folding>
-                <element signature="e#101#458#0" />
+                <element signature="e#101#503#0" />
                 <element signature="e#540#742#0" />
                 <element signature="e#778#796#0" />
                 <element signature="e#939#1030#0" />
-                <element signature="e#1082#1089#0" />
-                <element signature="e#1072#1841#0" />
-                <element signature="e#1947#2437#0" />
-                <element signature="e#2744#4460#0" />
+                <element signature="e#2879#4595#0" />
+                <element signature="e#3240#4499#0" />
               </folding>
             </state>
           </provider>
@@ -121,6 +119,8 @@
       <find>get_black</find>
       <find>get_oppo</find>
       <find>get_poss</find>
+      <find>get_possible_pla</find>
+      <find>TO DO</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -320,8 +320,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="517" column="16" selection-start-line="517" selection-start-column="8" selection-end-line="517" selection-end-column="16" />
+        <state relative-caret-position="606">
+          <caret line="517" column="24" selection-start-line="517" selection-start-column="8" selection-end-line="517" selection-end-column="24" />
           <folding>
             <element signature="e#132#3624#0" />
           </folding>
@@ -330,17 +330,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ChessPlayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="122" column="16" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="16" />
+        <state relative-caret-position="278">
+          <caret line="79" column="13" lean-forward="true" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
           <folding>
-            <element signature="e#101#458#0" />
+            <element signature="e#101#503#0" />
             <element signature="e#540#742#0" />
             <element signature="e#778#796#0" />
             <element signature="e#939#1030#0" />
-            <element signature="e#1082#1089#0" />
-            <element signature="e#1072#1841#0" />
-            <element signature="e#1947#2437#0" />
-            <element signature="e#2744#4460#0" />
+            <element signature="e#2879#4595#0" />
+            <element signature="e#3240#4499#0" />
           </folding>
         </state>
       </provider>

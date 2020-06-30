@@ -14,6 +14,8 @@ class ChessPlayer:
         self.queen_coeff = 9.7
         self.move_coeff = 0.1
 
+        self.num_of_moves_ahead = 4
+
     # this method is only called once
     def set_pieces(self, pieces):
         for piece in pieces:
@@ -114,6 +116,13 @@ class ChessPlayer:
                             evaluation += self.evaluate_attack(chessboard[move[0]][move[1]])
 
         return Decimal(Decimal(evaluation).quantize(Decimal('.0001'), rounding=ROUND_HALF_UP))
+
+    # recursion which searches future moves
+    # TO DO: determine start position of possible move, currently we have only end position
+    def depth_search(self, player_color, depth, board):
+        pass
+
+
 
     # determines optimal move using alpha-beta pruning method
     def make_move(self, board):

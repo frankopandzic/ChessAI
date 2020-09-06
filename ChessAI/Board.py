@@ -498,16 +498,16 @@ class Board:
         return num_of_possible_moves
 
     # wrapper function for possible_PIECE_moves functions
-    def get_possible_moves(self, piece, own_position, color):
-        if piece == "Pawn":
+    def get_possible_moves(self, piece_name, own_position, color):
+        if piece_name == "Pawn":
             possible_moves = self.possible_pawn_moves(own_position, color)
-        elif piece == "Rook":
+        elif piece_name == "Rook":
             possible_moves = self.possible_rook_moves(own_position, color)
-        elif piece == "Knight":
+        elif piece_name == "Knight":
             possible_moves = self.possible_knight_moves(own_position, color)
-        elif piece == "Bishop":
+        elif piece_name == "Bishop":
             possible_moves = self.possible_bishop_moves(own_position, color)
-        elif piece == "Queen":
+        elif piece_name == "Queen":
             possible_moves = self.possible_queen_moves(own_position, color)
         else:
             possible_moves = self.possible_king_moves(own_position, color)

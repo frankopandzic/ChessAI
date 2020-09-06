@@ -14,7 +14,7 @@ class ChessPlayer:
         self.queen_coeff = 9.7
         self.move_coeff = 0.1
 
-        self.num_of_moves_ahead = 4
+        self.recursion_depth = 4
 
     # this method is only called once
     def set_pieces(self, pieces):
@@ -78,7 +78,7 @@ class ChessPlayer:
         elif name == "Queen":
             return self.queen_coeff/5
         else:
-            # opposition king is in check
+            # opposition king is in check-worth the same as a pawn
             return self.pawn_coeff
 
     # returns float value representing current state of the game,
@@ -118,18 +118,30 @@ class ChessPlayer:
         return Decimal(Decimal(evaluation).quantize(Decimal('.0001'), rounding=ROUND_HALF_UP))
 
     # recursion which searches future moves
-    # TO DO: determine start position of possible move, currently we have only end position
-    def depth_search(self, player_color, depth, board):
-        pass
+    # TO DO: determine the start position of possible move; currently we only have the end position
+    def depth_search(self, player_color, depth, board, start, move):
+        board.update_board(start, move)
+        if depth == self.recursion_depth:
+            return self.evaluate(board)
+        possible_moves = board.get_possible_player_moves()
 
 
-
-    # determines optimal move using alpha-beta pruning method
+    # determines optimal move using minimax with pruning
     def make_move(self, board):
-        possible_moves = board.get_possible_player_moves(self.get_color())
+        max_eval = 0
+        best_move = None
+        fake_board = [row[:] for row in board]
+        player_color = self.get_color()
+        coordinates = board.get_opposition_position(player_color)
 
-        for move in possible_moves:
-            pass
+        for x, y in coordinates:
+            possible_moves = board.get_possible_moves(piece_name=board[x][y], own_position=(x, y), color=player_color)
+            for move in possible_moves:
+                eval = self.depth_search(player_color, depth=1, board=fake_board, start=(x, y), move=move)
+                if eval > max_eval:
+                    max_eval = eval
+                    best_move = move
+        bo
 
 
 

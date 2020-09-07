@@ -118,7 +118,7 @@ class ChessPlayer:
         return Decimal(Decimal(evaluation).quantize(Decimal('.0001'), rounding=ROUND_HALF_UP))
 
     # recursion which searches future moves
-    # TO DO: determine the start position of possible move; currently we only have the end position
+    # TO DO: rijesiti bugove - najvjerojatnije indeksiranje pozicije na ploci
     def depth_search(self, player_color, depth, board, start, move):
         optimal_evaluation = 0
         board.update_board(start, move)
@@ -149,6 +149,7 @@ class ChessPlayer:
         return optimal_evaluation
 
     # determines optimal move using minimax with pruning
+    # TO DO: rijesiti bugove - najvjerojatnije indeksiranje pozicije na ploci
     def make_move(self, board):
         max_eval = 0
         best_move, start = None, None

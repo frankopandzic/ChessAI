@@ -120,28 +120,54 @@ class ChessPlayer:
     # recursion which searches future moves
     # TO DO: determine the start position of possible move; currently we only have the end position
     def depth_search(self, player_color, depth, board, start, move):
+        optimal_evaluation = 0
         board.update_board(start, move)
         if depth == self.recursion_depth:
             return self.evaluate(board)
-        possible_moves = board.get_possible_player_moves()
 
+        if player_color == "White":
+            rival_color = "Black"
+        else:
+            rival_color = "White"
+        # rival pieces position
+        coordinates = board.get_opposition_position(rival_color)
+        # print(coordinates)
+
+        for x, y in coordinates:
+            figure = board.board[x][y].get_figure()
+            possible_moves = board.get_possible_moves(piece_name=figure.get_name(), own_position=(x+1, y+1), color=rival_color)
+            for _move in possible_moves:
+                _eval = self.depth_search(player_color=rival_color, depth=depth+1, board=board, start=(x+1, y+1), move=_move)
+                # searching for max evaluation when depth is an odd number (player turn)
+                if depth%2:
+                    if _eval > optimal_evaluation:
+                        optimal_evaluation = _eval
+                # searching for min evaluation when depth is an even number (opposition turn)
+                else:
+                    if _eval < optimal_evaluation:
+                        optimal_evaluation = _eval
+        return optimal_evaluation
 
     # determines optimal move using minimax with pruning
     def make_move(self, board):
         max_eval = 0
-        best_move = None
-        fake_board = [row[:] for row in board]
+        best_move, start = None, None
+        fake_board = board.copy()
         player_color = self.get_color()
+        # get positions of own pieces still in the game
         coordinates = board.get_opposition_position(player_color)
+        print(coordinates)
 
         for x, y in coordinates:
-            possible_moves = board.get_possible_moves(piece_name=board[x][y], own_position=(x, y), color=player_color)
+            figure = board.board[x][y].get_figure()
+            possible_moves = board.get_possible_moves(piece_name=figure.get_name(), own_position=(x+1, y+1), color=player_color)
             for move in possible_moves:
-                eval = self.depth_search(player_color, depth=1, board=fake_board, start=(x, y), move=move)
+                eval = self.depth_search(player_color, depth=1, board=fake_board, start=(x+1, y+1), move=move)
                 if eval > max_eval:
                     max_eval = eval
                     best_move = move
-        bo
+                    start = (x, y)
+        board.update_board(start, best_move)
 
 
 

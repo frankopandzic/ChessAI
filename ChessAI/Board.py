@@ -509,7 +509,7 @@ class Board:
             possible_moves = self.possible_bishop_moves(own_position, color)
         elif piece_name == "Queen":
             possible_moves = self.possible_queen_moves(own_position, color)
-        else:
+        elif piece_name == "King":
             possible_moves = self.possible_king_moves(own_position, color)
 
         return possible_moves
@@ -573,5 +573,7 @@ class Board:
                         positions.append((index, letter))
         return positions
 
-
-
+    def copy(self):
+        copied_board = Board()
+        copied_board.board = self.board.copy()
+        return copied_board
